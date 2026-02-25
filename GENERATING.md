@@ -29,11 +29,19 @@ This installs system dependencies, runs the generator, reorganizes API and docs 
 
 This will:
 
-1. Fetch the spec from `https://api.unibee.top/api.sdk.generator.json?hideSecurity=true`
-2. Run OpenAPI Generator with the Ruby generator and `config.yaml`
-3. Write the gem into the current directory (`lib/`, `spec/`, `.gemspec`, etc.)
-4. Run `scripts/reorganize_api_structure.rb` to move API files from a flat `api/` folder into logical sectors: `api/admin/`, `api/merchant/`, `api/invoice/`, `api/subscription/`, `api/user/`, etc., and update require paths.
-5. Run `scripts/reorganize_docs_structure.rb` to move documentation into the same sector folders: `docs/admin/`, `docs/merchant/`, `docs/invoice/`, etc., and put model docs in `docs/models/`. Root `README.md` links to API docs are updated, and `docs/README.md` is written as an index.
+1. **Download the spec** to `.openapi-generator/spec.json` (with timeout), so the generator never hangs on a slow URL.
+2. Run OpenAPI Generator (Docker, then Java JAR, then npx) with the local spec and `config.yaml`.
+3. Write the gem into the current directory (`lib/`, `spec/`, `.gemspec`, etc.).
+4. Run `scripts/reorganize_api_structure.rb` to move API files into sector folders (`api/admin/`, `api/invoice/`, etc.) and update require paths.
+5. Run `scripts/strip_generated_headers.rb` to remove boilerplate headers and add `# frozen_string_literal: true`.
+
+**If generation seems to hang** (e.g. at step 2 with Docker in WSL), use Java instead:
+
+```bash
+PREFER_JAR=1 ./generate.sh
+```
+
+You need Java 11+ installed. The script will try JAR first and skip Docker.
 
 ## Custom spec URL (optional)
 
@@ -43,25 +51,21 @@ To use a different spec URL (e.g. a local file or another environment):
 UNIBEE_SPEC_URL="https://your-api.example.com/api.sdk.generator.json?hideSecurity=true" ./generate.sh
 ```
 
-Or with a local file:
+To increase spec download timeout (default 120s):
 
 ```bash
-# Download spec first, then:
-docker run --rm -v "${PWD}:/local" -w /local \
-  openapitools/openapi-generator-cli:v7.2.0 generate \
-  -i /local/openapi.json \
-  -g ruby -o /local -c /local/config.yaml
+SPEC_TIMEOUT=300 ./generate.sh
 ```
 
 ## Without Docker
 
-If you have the OpenAPI Generator CLI JAR:
+Run with `PREFER_JAR=1` so the script uses Java and downloads the CLI JAR automatically:
 
 ```bash
-java -jar openapi-generator-cli.jar generate \
-  -i "https://api.unibee.top/api.sdk.generator.json?hideSecurity=true" \
-  -g ruby -o . -c config.yaml
+PREFER_JAR=1 ./generate.sh
 ```
+
+Requires Java 11+.
 
 ## Config
 

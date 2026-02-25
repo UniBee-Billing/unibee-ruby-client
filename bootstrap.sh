@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Full bootstrap: install deps → generate SDK → reorganize → bundle install → format for readability.
+# Full bootstrap: deps → download spec → generate SDK → reorganize API → strip headers → bundle install → RuboCop.
 # Run from repo root: ./bootstrap.sh
+# If Docker hangs (e.g. WSL): PREFER_JAR=1 ./bootstrap.sh
 
 set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -17,7 +18,10 @@ else
 fi
 echo ""
 
-echo "[2/5] Generating SDK..."
+echo "[2/5] Generating SDK (spec → generator → reorganize → strip headers)..."
+if [ -n "$PREFER_JAR" ]; then
+  echo "  PREFER_JAR=1: using Java JAR instead of Docker"
+fi
 if [ -f "${SCRIPT_DIR}/generate.sh" ]; then
   bash "${SCRIPT_DIR}/generate.sh"
 else

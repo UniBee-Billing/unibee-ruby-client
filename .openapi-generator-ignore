@@ -8,6 +8,9 @@ BOOTSTRAP.md
 .git/
 .gitignore
 GENERATING.md
+README.md
+docs/
+.rubocop.yml
 # No generic CI/boilerplate
 git_push.sh
 .travis.yml
