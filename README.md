@@ -4,8 +4,8 @@ The official Ruby library for the [UniBee Billing API](https://unibee.top). It p
 
 ## Documentation
 
-- [API reference](https://api.unibee.top) — UniBee API overview and dashboard
-- [OpenAPI spec](https://api.unibee.top/api.sdk.generator.json) — full endpoint definition
+- [API reference](https://api.unibee.top/swagger) — UniBee API overview and dashboard
+- [OpenAPI spec](https://api.unibee.top/swagger) — full endpoint definition
 
 ## Installation
 
