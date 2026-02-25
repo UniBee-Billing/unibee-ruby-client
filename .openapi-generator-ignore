@@ -1,0 +1,16 @@
+# Keep these; do not regenerate
+generate.sh
+bootstrap.sh
+config.yaml
+scripts/
+BOOTSTRAP.md
+.openapi-generator-ignore
+.git/
+.gitignore
+GENERATING.md
+# No generic CI/boilerplate
+git_push.sh
+.travis.yml
+.gitlab-ci.yml
+# Keep minimal spec_helper
+spec/spec_helper.rb

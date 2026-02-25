@@ -1,0 +1,20 @@
+# Unibee::UnibeeApiMerchantDiscountUserDiscountListRes
+
+## Properties
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **total** | **Integer** | Total | [optional] |
+| **user_discounts** | [**Array&lt;UnibeeApiBeanDetailMerchantUserDiscountCodeDetail&gt;**](UnibeeApiBeanDetailMerchantUserDiscountCodeDetail.md) | User Discount Object List | [optional] |
+
+## Example
+
+```ruby
+require 'unibee'
+
+instance = Unibee::UnibeeApiMerchantDiscountUserDiscountListRes.new(
+  total: null,
+  user_discounts: null
+)
+```
+

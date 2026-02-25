@@ -1,0 +1,17 @@
+# OpenAPI Generator config for Ruby SDK (UniBee API)
+# Used by: ./generate.sh, ./bootstrap.sh
+gemName: unibee
+moduleName: Unibee
+gemVersion: 1.0.0
+gemSummary: "Official Ruby SDK for UniBee Billing API"
+gemDescription: "Idiomatic Ruby client for UniBee API - subscriptions, invoices, payments, users, plans, and more. Generated from the official OpenAPI spec."
+gemAuthor: "UniBee-Billing"
+gemAuthorEmail: "support@unibee.top"
+gemHomepage: "https://github.com/UniBee-Billing/unibee-ruby-client"
+gemLicense: "MIT"
+gemRequiredRubyVersion: ">= 2.7.0"
+library: faraday
+hideGenerationTimestamp: true
+# More readable generated code: required params first, consistent ordering
+sortParamsByRequiredFlag: true
+sortModelPropertiesByRequiredFlag: true
