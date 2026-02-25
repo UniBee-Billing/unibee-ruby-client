@@ -115,12 +115,12 @@ end
 
 ## Configuration
 
-| Option            | Description                    | Default              |
-|-------------------|--------------------------------|----------------------|
-| `host`            | API base URL                   | `https://api.unibee.top` |
-| `api_key`         | Auth header key/value          | —                    |
-| `scheme`          | `http` or `https`             | `https`              |
-| `timeout`         | Request timeout (seconds)      | —                    |
+| Option    | Description           | Default              |
+|-----------|------------------------|----------------------|
+| `host`    | API base URL           | `https://api.unibee.top` |
+| `api_key` | Auth header key/value  | —                    |
+| `scheme`  | `http` or `https`      | `https`              |
+| `timeout` | Request timeout (sec)  | —                    |
 
 ```ruby
 Unibee.configure do |config|
@@ -128,29 +128,6 @@ Unibee.configure do |config|
   config.api_key['Authorization'] = 'Bearer your_key'
   config.debugging = false
 end
-```
-
-## Development
-
-To regenerate the SDK from the official OpenAPI spec and install dependencies:
-
-```bash
-./bootstrap.sh
-```
-
-Or step by step:
-
-```bash
-./generate.sh    # fetch spec, generate code, reorganize API/docs
-bundle install
-```
-
-See [GENERATING.md](GENERATING.md) and [BOOTSTRAP.md](BOOTSTRAP.md) for details.
-
-Run tests:
-
-```bash
-bundle exec rspec
 ```
 
 ## License
